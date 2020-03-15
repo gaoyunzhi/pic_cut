@@ -11,10 +11,10 @@ def goodSize(w, h):
 	return h < 2 * w
 
 def computeSize(h, p):
-	return h / (p - 0.05 * (p - 1))
+	return math.ceil(h / (p - 0.05 * (p - 1)))
 
 def cut(path):
-    img = Image.open(image_path)
+    img = Image.open(path)
 
     w, h = img.size
 
@@ -26,18 +26,12 @@ def cut(path):
     	return
 
     upper = 0
+    lower = h - (piece - 1) * nh
 
     for p in range(piece):
-        #if we are at the end, set the lower bound to be the bottom of the image
-        if count == slices:
-            lower = height
-        else:
-            lower = int(count * slice_size)  
-        #set the bounding box! The important bit     
-        bbox = (left, upper, width, lower)
-        working_slice = img.crop(bbox)
-        upper += slice_size
-        #save the slice
-        working_slice.save(os.path.join(outdir, "slice_" + out_name + "_" + str(count)+".png"))
-        count +=1
+        working_slice = img.crop((0, upper, w, lower))
+        main_path, _ = os.path.splitext(path)
+        working_slice.save('%s_%d.png' % (main_path, p))
+        upper += nh
+        lower += nh
 
