@@ -24,7 +24,7 @@ def cut(path):
 
 	w, h = img.size
 
-	for piece in range(1, 10):
+	for piece in range(1, 19):
 		nh, moves = computeSize(h, piece)
 		if goodSize(w, nh):
 			break
