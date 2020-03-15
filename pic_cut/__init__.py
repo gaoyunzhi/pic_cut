@@ -3,7 +3,7 @@
 
 name = 'pic_cut'
 
-import Image
+from PIL import Image
 import math
 import os
 
@@ -23,7 +23,7 @@ def cut(path):
     	if goodSize(w, nh):
     		break
     if piece == 1 or not goodSize(w, nh):
-    	return
+    	piece = 0
 
     upper = 0
     lower = h - (piece - 1) * nh
@@ -31,7 +31,9 @@ def cut(path):
     for p in range(piece):
         working_slice = img.crop((0, upper, w, lower))
         main_path, _ = os.path.splitext(path)
-        working_slice.save('%s_%d.png' % (main_path, p))
+        fn = '%s_%d.png' % (main_path, p)
+        working_slice.save(fn)
+        yield fn
         upper += nh
         lower += nh
 
