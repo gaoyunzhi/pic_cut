@@ -2,17 +2,12 @@
 # -*- coding: utf-8 -*-
 
 import pic_cut
-import os
-import sys
 
 def test():
-	additional_setting = '--paper-size b6 --pdf-page-margin-left 15 ' + \
-		'--pdf-page-margin-right 15 --pdf-page-margin-top 15 ' + \
-		'--pdf-page-margin-bottom 15'
-	pdf_name = pic_cut.gen(news_source='bbc', 
-		filename_suffix='_大字版', additional_setting=additional_setting)
-	os.system('open %s -g' % pdf_name)
-	
+	assert len(pic_cut.cut('tmp/no_cut.jpg')) == 0
+	pic_cut.cut('tmp/no_cut_2.jpg')
+	pic_cut.cut('tmp/cut_1.jpg')
+	pic_cut.cut('tmp/cut_2.jpg')
 	
 if __name__=='__main__':
 	test()
