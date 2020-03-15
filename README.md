@@ -1,15 +1,14 @@
-# news_2_pdf
+# pic_cut
 
-Generate international news in pdf. For people with limited access to internet.
+Cut long picture for better view.
 
 ## usage
 
 ```
-import news_2_pdf
-new_2_pdg.gen()
+import pic_cut
+file_list = pic_cut.cut(file)
 ```
 
 ## how to install
 
-`sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin` 
-`pip3 install news_2_pdf`
+`pip3 install pic_cut`
