@@ -14,7 +14,9 @@ def computeSize(h, p):
 	return math.ceil(h / (p - 0.05 * (p - 1)))
 
 def cut(path):
+    print('c1')
     img = Image.open(path)
+    print('c2')
 
     w, h = img.size
 
@@ -24,6 +26,8 @@ def cut(path):
     		break
     if piece == 1 or not goodSize(w, nh):
     	piece = 0
+
+    print(piece)
 
     upper = 0
     lower = h - (piece - 1) * nh
