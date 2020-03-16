@@ -41,7 +41,8 @@ def getCutImages(images, limit=9):
 		cuts = list(cut(fn))
 		if not cuts:
 			cuts = [fn]
-		for cut in cuts:
+		for c in cuts:
+			result.append(c)
 			if len(result) >= limit:
 				return result
 	return result
