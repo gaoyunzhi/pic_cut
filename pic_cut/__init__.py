@@ -29,7 +29,7 @@ def cut(path, limit=19):
 		working_slice.save(fn)
 		yield fn
 
-def getCutImages(images, prefix = limit=9):
+def getCutImages(images, limit=9):
 	os.system('mkdir tmp_image > /dev/null 2>&1')
 	result = []
 	prefix = 'tmp_image/'
