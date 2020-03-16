@@ -1,14 +1,14 @@
-# web_2_album
+# pic_cut
 
-Return photo list and caption (markdown format) from web.
+Cut long picture for better view.
 
 ## usage
 
 ```
-import web_2_album
-photo_filename_list, caption = web_2_album.get(url)
+import pic_cut
+file_list = pic_cut.cut(file)
 ```
 
 ## how to install
 
-`pip3 install web_2_album`
+`pip3 install pic_cut`
