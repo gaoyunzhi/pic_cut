@@ -9,22 +9,12 @@ import os
 
 MARGIN = 0.05
 
-def goodSize(w, h):
-	return h < 2 * w
-
-def computeSize(h, p):
-	raw_h = h / (p - MARGIN * (p - 1))
-	nh = math.ceil(raw_h)
-	moves = [math.ceil(raw_h * ((1 - MARGIN) * step)) for step in range(p - 1)]
-	moves.append(h - nh)
-	return nh, moves
-
-def cut(path):
+def cut(path, limit=19):
 	img = Image.open(path)
 
 	w, h = img.size
 
-	for piece in range(1, 19):
+	for piece in range(1, limit + 1):
 		nh, moves = computeSize(h, piece)
 		if goodSize(w, nh):
 			break
@@ -39,3 +29,28 @@ def cut(path):
 		working_slice.save(fn)
 		yield fn
 
+def getCutImages(images, prefix = limit=9):
+	os.system('mkdir tmp_image > /dev/null 2>&1')
+	result = []
+	prefix = 'tmp_image/'
+	for image in images:
+		fn = prefix + os.path.basename(image)
+		with open(fn, 'wb') as f:
+			f.write(cached_url.get(image, force_cache=True, mode='b'))
+		cuts = list(cut(fn))
+		if not cuts:
+			cuts = [fn]
+		for cut in cuts:
+			if len(result) >= limit:
+				return result
+	return result
+
+def goodSize(w, h):
+	return h < 2 * w
+
+def computeSize(h, p):
+	raw_h = h / (p - MARGIN * (p - 1))
+	nh = math.ceil(raw_h)
+	moves = [math.ceil(raw_h * ((1 - MARGIN) * step)) for step in range(p - 1)]
+	moves.append(h - nh)
+	return nh, moves
