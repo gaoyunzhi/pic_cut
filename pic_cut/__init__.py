@@ -6,6 +6,7 @@ name = 'pic_cut'
 from PIL import Image
 import math
 import os
+import cached_url
 
 MARGIN = 0.05
 

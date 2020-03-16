@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="pic_cut",
-    version="0.0.6",
+    version="0.0.7",
     author="Yunzhi Gao",
     author_email="gaoyunzhi@gmail.com",
     description="Cut Long Picture.",
@@ -19,6 +19,7 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     install_requires=[
+        'cached_url >= 0.0.8',
     ],
     python_requires='>=3.0',
 )
