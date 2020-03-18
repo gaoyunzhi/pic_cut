@@ -48,7 +48,7 @@ def getCutImages(images, limit=9):
 	return result
 
 def goodSize(w, h):
-	return h < 2 * w
+	return h < 2.1 * w
 
 def computeSize(h, p):
 	raw_h = h / (p - MARGIN * (p - 1))
