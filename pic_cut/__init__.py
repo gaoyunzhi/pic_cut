@@ -34,7 +34,8 @@ def getCutImages(images, limit=9):
 	result = []
 	for image in images:
 		cached_url.get(image, force_cache=True, mode='b')
-		cuts = list(cut(cached_url.getFilePath(image)))
+		fn = cached_url.getFilePath(image)
+		cuts = list(cut(fn))
 		if not cuts:
 			cuts = [fn]
 		for c in cuts:
