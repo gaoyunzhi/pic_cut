@@ -35,7 +35,7 @@ def getCutImages(images, limit=9):
 	result = []
 	prefix = 'tmp_image/'
 	for image in images:
-		fn = prefix + os.path.basename(image)
+		fn = prefix + os.path.basename(image.replace('=', '.'))
 		with open(fn, 'wb') as f:
 			f.write(cached_url.get(image, force_cache=True, mode='b'))
 		cuts = list(cut(fn))
