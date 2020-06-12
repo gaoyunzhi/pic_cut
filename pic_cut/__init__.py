@@ -10,7 +10,7 @@ import cached_url
 
 MARGIN = 0.05
 
-def cut(path, limit=19):
+def cut(path, limit=20):
 	img = Image.open(path)
 
 	w, h = img.size
@@ -30,7 +30,7 @@ def cut(path, limit=19):
 		working_slice.save(fn)
 		yield fn
 
-def getCutImages(images, limit=9):
+def getCutImages(images, limit=10):
 	result = []
 	for image in images:
 		cached_url.get(image, force_cache=True, mode='b')
