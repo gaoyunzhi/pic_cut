@@ -11,7 +11,10 @@ import cached_url
 MARGIN = 0.05
 
 def cut(path, limit=20):
-	img = Image.open(path)
+	try:
+		img = Image.open(path)
+	except:
+		return []
 
 	w, h = img.size
 
