@@ -16,7 +16,7 @@ def getImg(path):
 	except:
 		return
 
-def cut(path, limit=20):
+def cut(path, limit=100):
 	img = getImg(path)
 
 	w, h = img.size
