@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="pic_cut",
-    version="0.0.18",
+    version="0.0.19",
     author="Yunzhi Gao",
     author_email="gaoyunzhi@gmail.com",
     description="Cut Long Picture.",

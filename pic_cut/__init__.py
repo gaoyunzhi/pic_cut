@@ -10,11 +10,14 @@ import cached_url
 
 MARGIN = 0.05
 
-def cut(path, limit=20):
+def getImg(path):
 	try:
-		img = Image.open(path)
+		return Image.open(path) 
 	except:
-		return []
+		return
+
+def cut(path, limit=20):
+	img = getImg(path)
 
 	w, h = img.size
 
@@ -38,9 +41,9 @@ def getCutImages(images, limit=10):
 	for image in images:
 		cached_url.get(image, force_cache=True, mode='b')
 		fn = cached_url.getFilePath(image)
-		cuts = list(cut(fn))
-		if not cuts:
-			cuts = [fn]
+		if not getImg(fn):
+			continue
+		cuts = list(cut(fn)) or [fn]
 		for c in cuts:
 			result.append(c)
 			if len(result) >= limit:
