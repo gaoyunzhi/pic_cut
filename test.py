@@ -2,10 +2,11 @@
 # -*- coding: utf-8 -*-
 
 import pic_cut
+import web_2_album
 
 def test():
-	print(pic_cut.getCutImages(['https://api.telegram.org/file/bot1079222610:AAFeqXw45QT1Ixhclt12ehXtqh8EXRGChK8/documents/file_6475.jpg'],
-		limit=100))
+	result = web_2_album.get('https://www.douban.com/people/2627485/status/3185647338/')
+	print(pic_cut.getCutImages(result.imgs, limit=100))
 	
 if __name__=='__main__':
 	test()

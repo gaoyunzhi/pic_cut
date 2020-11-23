@@ -16,6 +16,19 @@ def getImg(path):
 	except:
 		return
 
+def isAnimated(fn):
+	if fn.endswith('mp4'):
+		return True
+	gif = getImg(fn)
+	if not gif:
+		return False
+	try:
+		gif.seek(1)
+	except EOFError:
+		return False
+	else:
+		return True
+
 def cut(path, limit=100):
 	img = getImg(path)
 
@@ -36,15 +49,19 @@ def cut(path, limit=100):
 		working_slice.save(fn)
 		yield fn
 
+def cutSafe(image):
+	cached_url.get(image, force_cache=True, mode='b')
+	fn = cached_url.getFilePath(image)
+	if isAnimated(fn):
+		return [fn]
+	if not getImg(fn):
+		return []
+	return list(cut(fn)) or [fn]
+
 def getCutImages(images, limit=10):
 	result = []
 	for image in images:
-		cached_url.get(image, force_cache=True, mode='b')
-		fn = cached_url.getFilePath(image)
-		if not getImg(fn):
-			continue
-		cuts = list(cut(fn)) or [fn]
-		for c in cuts:
+		for c in cutSafe(image):
 			result.append(c)
 			if len(result) >= limit:
 				return result
