@@ -39,7 +39,7 @@ def cut(path, limit=100):
 		if goodSize(w, nh):
 			break
 
-	if len(moves) <= 1 or not goodSize(w, nh):
+	if len(moves) <= 1 or not goodSize(w, nh) or h < 3 * w:
 		moves = []
 
 	for p, m in enumerate(moves):

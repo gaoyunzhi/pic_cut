@@ -3,9 +3,10 @@
 
 import pic_cut
 import web_2_album
+import weibo_2_album
 
 def test():
-	result = web_2_album.get('https://www.douban.com/people/2627485/status/3185647338/')
+	result = weibo_2_album.get('https://m.weibo.cn/status/JyKfpadAs')
 	print(pic_cut.getCutImages(result.imgs, limit=100))
 	
 if __name__=='__main__':
